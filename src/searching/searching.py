@@ -19,5 +19,22 @@ def binary_search(arr, target, start, end):
 # You can implement this function either recursively 
 # or iteratively
 def agnostic_binary_search(arr, target):
-    # Your code here
-    pass
+    reverse = arr[0] > arr[-1]
+    start = 0
+    end = len(arr) - 1
+    while start <= end:
+        middle = (start + end) // 2
+        if arr[middle] == target:
+            return middle
+        elif arr[middle] < target:
+            if reverse:
+                end = middle - 1
+            else:
+                start = middle + 1
+        else:
+            if reverse:
+                start = middle + 1
+            else:
+                end = middle - 1
+    
+    return -1
